@@ -83,10 +83,21 @@ public class BotaoRelatorio extends JButton implements MouseListener {
 						new com.itextpdf.text.Font(FontFamily.HELVETICA, 14, Font.BOLD));
 				totPed.setAlignment(Paragraph.ALIGN_CENTER);
 				doc.add(totPed);
-				Paragraph medA = new Paragraph("Média dos Anos: " + formatarValor((totGeral / anual.size())),
+				String media = anual.size() == 0 ? formatarValor(0) : formatarValor(totGeral / anual.size());
+				Paragraph medA = new Paragraph("Média dos Anos: " + media,
 						new com.itextpdf.text.Font(FontFamily.HELVETICA, 14, Font.BOLD));
 				medA.setAlignment(Paragraph.ALIGN_CENTER);
 				doc.add(medA);
+				if (!anual.isEmpty()) {
+					Paragraph datA = new Paragraph("Pedido mais antigo: " + anual.getFirst().getMensais().getFirst().getPedidos().getFirst().getData(),
+							new com.itextpdf.text.Font(FontFamily.HELVETICA, 14, Font.BOLD));
+					datA.setAlignment(Paragraph.ALIGN_CENTER);
+					doc.add(datA);
+					Paragraph datN = new Paragraph("Pedido mais recente: " + anual.getLast().getMensais().getLast().getPedidos().getLast().getData(),
+							new com.itextpdf.text.Font(FontFamily.HELVETICA, 14, Font.BOLD));
+					datN.setAlignment(Paragraph.ALIGN_CENTER);
+					doc.add(datN);
+				}
 				doc.add(new Paragraph(" "));
 
 				for (PedidosAnuais pa : anual) {
@@ -94,7 +105,9 @@ public class BotaoRelatorio extends JButton implements MouseListener {
 					for (PedidosMensais pm : pa.getMensais()) {
 						pedidosAnuais += pm.getPedidos().size();
 					}
-					Paragraph ano = new Paragraph("----------------------------------------------   " + pa.getAno() + "   ----------------------------------------------",
+					Paragraph ano = new Paragraph(
+							"----------------------------------------------   " + pa.getAno()
+									+ "   ----------------------------------------------",
 							new com.itextpdf.text.Font(FontFamily.HELVETICA, 15, Font.BOLD));
 					ano.setAlignment(Paragraph.ALIGN_CENTER);
 					doc.add(ano);
@@ -103,7 +116,8 @@ public class BotaoRelatorio extends JButton implements MouseListener {
 					totA.setAlignment(Paragraph.ALIGN_CENTER);
 					Paragraph totP = new Paragraph("Total de Itens: " + pedidosAnuais);
 					totP.setAlignment(Paragraph.ALIGN_CENTER);
-					Paragraph medM = new Paragraph("Média Anual: " + formatarValor((pa.getTotalAnual() / pa.getMensais().size())));
+					Paragraph medM = new Paragraph(
+							"Média Anual: " + formatarValor((pa.getTotalAnual() / pa.getMensais().size())));
 					medM.setAlignment(Paragraph.ALIGN_CENTER);
 
 					doc.add(totA);
@@ -116,7 +130,8 @@ public class BotaoRelatorio extends JButton implements MouseListener {
 								new com.itextpdf.text.Font(FontFamily.HELVETICA, 14, Font.BOLD)));
 						doc.add(new Paragraph("Itens: " + pm.getPedidos().size()));
 						doc.add(new Paragraph("Total Mensal: " + formatarValor(pm.getTotalMensal())));
-						doc.add(new Paragraph("Média desse mês: " + formatarValor((pm.getTotalMensal() / pm.getPedidos().size()))));
+						doc.add(new Paragraph(
+								"Média desse mês: " + formatarValor((pm.getTotalMensal() / pm.getPedidos().size()))));
 						doc.add(new Paragraph(" "));
 						doc.add(new Paragraph("---  Itens do Mês  -----------------------",
 								new com.itextpdf.text.Font(FontFamily.HELVETICA, 10, Font.BOLD)));
@@ -166,7 +181,7 @@ public class BotaoRelatorio extends JButton implements MouseListener {
 
 		return listaA;
 	}
-	
+
 	public static String formatarValor(double valor) {
 		Locale brasil = Locale.of("pt", "BR");
 		NumberFormat formato = NumberFormat.getCurrencyInstance(brasil);
