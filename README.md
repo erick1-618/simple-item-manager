@@ -16,6 +16,14 @@ Obs: caso o programa não siga ao passo 2, tente executar o .jar pelo cmd, utili
 ```
 java -jar SimpleManager.jar
 ```
+### Tela principal
+<div style='display:inline'>
+ <a href="https://ibb.co/FhTpJqr"><img src="https://i.ibb.co/S6CS07j/Imagem-do-Whats-App-de-2024-10-23-s-10-17-24-ab07c1f2.jpg" alt="Imagem-do-Whats-App-de-2024-10-23-s-10-17-24-ab07c1f2" border="0" width="476" height="310"></a><br /><a target='_blank' href='https://pt-br.imgbb.com/'></a><br />
+
+### Relatório gerado
+<a href="https://ibb.co/F3vqkhP"><img src="https://i.ibb.co/XLBkfWw/Captura-de-tela-2024-10-23-102038.png" alt="Captura-de-tela-2024-10-23-102038" border="0" width="279" height="368"></a><br /><a target='_blank' href='https://pt-br.imgbb.com/'></a><br/>
+ 
+</div>
 
 ## Tecnologias Utilizadas
 - **Java 21**
